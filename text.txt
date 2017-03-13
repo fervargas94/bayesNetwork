@@ -1,21 +1,20 @@
-# Specification file for Bayes Network
-# of Sprinkler System
+# Specification file for the example 
+# in the assignment description
+# 
 
 [Nodes]
-Sprinkler, Rain, GrassWet
+Test, Ill
 
 [Probabilities]
-+Rain = 0.2
-+Sprinkler|-Rain = 0.4
-+Sprinkler|+Rain = 0.01
-+GrassWet|+Rain,+Sprinkler=0.99
-+GrassWet|+Rain,-Sprinkler=0.8
-+GrassWet|-Rain,+Sprinkler=0.9
-+GrassWet|-Rain,-Sprinkler=0.0
++Ill = 0.001
++Test|+Ill=0.9
++Test|-Ill=0.5
 
 [Queries]
-+GrassWet|-Rain
-+GrassWet
-+Rain
-+Rain|+GrassWet
-+Rain,+Sprinkler|+GrassWet
++Ill
+-Ill
++Ill|+Test
++Test
+-Test
++Test|+Ill
++Test|-Ill
