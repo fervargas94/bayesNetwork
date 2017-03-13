@@ -250,6 +250,7 @@ while 1:
 	except (EOFError):
 	   break #end of file reached
 
+print(nodes, probabilities, queries)
 final_nodes = parseNodes(nodes)
 parseProbabilities(final_nodes, probabilities)
 bayesNetworkCopy = copy.deepcopy(bayesNetwork)
