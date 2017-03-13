@@ -98,8 +98,8 @@ def parseProbabilities(nodes, probabilities):
 		if len(parent) > 1:
 			probability = {}
 			for ch in parent:
-				print("ch" , ch)
 				parents.append(((ch[ch.find('|') + 1:ch.find('=')]).replace('+','').replace('-','')).split(','))
+				print((ch[ch.find('=') + 1:]), "NORMAL")
 				given = float((ch[ch.find('=') + 1:]))
 				givenProb = (ch[0:ch.find('=')])
 				query = (givenProb[0:givenProb.find('|')]) 
@@ -117,7 +117,7 @@ def parseProbabilities(nodes, probabilities):
 		else:
 			probability = {}
 			for ch in parent:
-				print("ch" , ch)
+				print((ch[ch.find('=') + 1:]), "ELSE ")
 				given = float((ch[ch.find('=') + 1:]))
 				probability[(ch[0:ch.find('=')])] = given
 				if ch.count('+') > 0:
@@ -126,7 +126,6 @@ def parseProbabilities(nodes, probabilities):
 					probability[(ch[0:ch.find('=')]).replace('-', '+')] = 1.0 - given
 		if len(children) > 1:
 			for ch in children:
-				print("ch" , ch)
 				#If the probabilty does not contain | then ignore it 
 				if ch.find('|') > -1:
 					childrens.append((ch[0:ch.find('|')].replace('+','').replace('-','')).split(','))
@@ -255,8 +254,6 @@ for line in fileinput.input():
 
 final_nodes = parseNodes(nodes)
 parseProbabilities(final_nodes, probabilities)
-for i in bayesNetwork:
-	print(i)
 bayesNetworkCopy = copy.deepcopy(bayesNetwork)
 parseQueries(bayesNetworkCopy)
 
