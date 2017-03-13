@@ -100,7 +100,6 @@ def parseProbabilities(nodes, probabilities):
 			for ch in parent:
 				if ch != "" and ch != '':
 					parents.append(((ch[ch.find('|') + 1:ch.find('=')]).replace('+','').replace('-','')).split(','))
-					print((ch[ch.find('=') + 1:]), "NORMAL")
 					given = float((ch[ch.find('=') + 1:]))
 					givenProb = (ch[0:ch.find('=')])
 					query = (givenProb[0:givenProb.find('|')]) 
@@ -119,7 +118,6 @@ def parseProbabilities(nodes, probabilities):
 			probability = {}
 			for ch in parent:
 				if ch != "" and ch != '':
-					print((ch[ch.find('=') + 1:]), "ELSE ")
 					given = float((ch[ch.find('=') + 1:]))
 					probability[(ch[0:ch.find('=')])] = given
 					if ch.count('+') > 0:
