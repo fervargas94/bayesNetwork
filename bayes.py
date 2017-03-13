@@ -250,9 +250,10 @@ for line in fileinput.input():
 	except (EOFError):
 	   break #end of file reached'''
 
-print(nodes, probabilities, queries)
 final_nodes = parseNodes(nodes)
 parseProbabilities(final_nodes, probabilities)
+for i in bayesNetwork:
+	print(i)
 bayesNetworkCopy = copy.deepcopy(bayesNetwork)
 parseQueries(bayesNetworkCopy)
 
