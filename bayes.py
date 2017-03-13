@@ -224,24 +224,27 @@ bayesNetwork = []
 		getting = "q"'''
 
 while 1:
-    line = raw_input()
-    if not line and getting == "q":
-        break
-    if getting == "n":
-    	if line != "" and line[0] != "[" and line[0] != "#":
-    		nodes.append((line.replace(' ', '')).split(','))
-    if getting == "p":
-    	if line != "" and line[0] != "[" and line[0] != "#":
-    		probabilities.append((line.rstrip('\n')).replace(' ', ''))
-    if getting == "q":
-    	if line != "" and line[0] != "[" and line[0] != "#":
-    		queries.append((line.rstrip('\n')).replace(' ', ''))
-    if line == '[Probabilities]':
-   		getting = "p"
-    if line == '[Nodes]':
-    	getting = "n"
-    if line == '[Queries]':
-    	getting = "q"
+	try:
+		line = raw_input()
+		if not line and getting == "q":
+			break
+		if getting == "n":
+			if line != "" and line[0] != "[" and line[0] != "#":
+				nodes.append((line.replace(' ', '')).split(','))
+		if getting == "p":
+			if line != "" and line[0] != "[" and line[0] != "#":
+				probabilities.append((line.rstrip('\n')).replace(' ', ''))
+		if getting == "q":
+			if line != "" and line[0] != "[" and line[0] != "#":
+				queries.append((line.rstrip('\n')).replace(' ', ''))
+		if line == '[Probabilities]':
+			getting = "p"
+		if line == '[Nodes]':
+			getting = "n"
+		if line == '[Queries]':
+			getting = "q"
+	except (EOFError):
+	   break #end of file reached
 
 final_nodes = parseNodes(nodes)
 parseProbabilities(final_nodes, probabilities)
