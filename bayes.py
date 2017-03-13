@@ -209,7 +209,6 @@ bayesNetwork = []
 final_results = []
 
 for line in fileinput.input():
-	print(line)
 	if not line and getting == "q":
 		break
 	if getting == "n":
@@ -251,7 +250,7 @@ for line in fileinput.input():
 	except (EOFError):
 	   break #end of file reached'''
 
-#print(nodes, probabilities, queries)
+print(nodes, probabilities, queries)
 final_nodes = parseNodes(nodes)
 parseProbabilities(final_nodes, probabilities)
 bayesNetworkCopy = copy.deepcopy(bayesNetwork)
