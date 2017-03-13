@@ -220,11 +220,11 @@ for line in fileinput.input():
 	if getting == "q":
 		if line != "" and line[0] != "[" and line[0] != "#" and line != "\n":
 			queries.append((line.rstrip('\n')).replace(' ', ''))
-	if line == '[Probabilities]\n':
+	if '[Probabilities]' in line:
 		getting = "p"
-	if line == '[Nodes]\n':
+	if '[Nodes]' in line:
 		getting = "n"
-	if line == '[Queries]\n':
+	if '[Queries]' in line:
 		getting = "q"
 
 '''while 1:
