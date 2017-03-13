@@ -213,13 +213,13 @@ for line in fileinput.input():
 		break
 	if getting == "n":
 		if line != "" and line[0] != "[" and line[0] != "#" and line != "\n":
-			nodes.append((((line.rstrip('\n')).replace(' ', '')).split(',')))
+			nodes.append((((line.rstrip('\n').rstrip('\r')).replace(' ', '')).split(',')))
 	if getting == "p":
 		if line != "" and line[0] != "[" and line[0] != "#" and line != "\n":
-			probabilities.append((line.rstrip('\n')).replace(' ', ''))
+			probabilities.append((line.rstrip('\n').rstrip('\r')).replace(' ', ''))
 	if getting == "q":
 		if line != "" and line[0] != "[" and line[0] != "#" and line != "\n":
-			queries.append((line.rstrip('\n')).replace(' ', ''))
+			queries.append((line.rstrip('\n').rstrip('\r')).replace(' ', ''))
 	if '[Probabilities]' in line:
 		getting = "p"
 	if '[Nodes]' in line:
