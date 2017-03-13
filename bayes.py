@@ -98,32 +98,34 @@ def parseProbabilities(nodes, probabilities):
 		if len(parent) > 1:
 			probability = {}
 			for ch in parent:
-				parents.append(((ch[ch.find('|') + 1:ch.find('=')]).replace('+','').replace('-','')).split(','))
-				print((ch[ch.find('=') + 1:]), "NORMAL")
-				given = float((ch[ch.find('=') + 1:]))
-				givenProb = (ch[0:ch.find('=')])
-				query = (givenProb[0:givenProb.find('|')]) 
-				evidence = (givenProb[givenProb.find('|') + 1: ch.find('=')])
-				probability[orderProbability(query, evidence)] = given
-		
-				if (ch[0:ch.find('|')]).count('+') > 0:
-					query = (ch[0:ch.find('|')]).replace('+', '-') 
-					evidence = (ch[ch.find('|') + 1: ch.find('=')])
-					probability[orderProbability(query, evidence)] = round(1.0 - given, 2)
-				else:
-					query = (ch[0:ch.find('|')]).replace('-', '+') 
-					evidence = (ch[ch.find('|') + 1: ch.find('=')])
-					probability[orderProbability(query, evidence)] = round(1.0 - given, 2)
+				if ch != "" and ch != '':
+					parents.append(((ch[ch.find('|') + 1:ch.find('=')]).replace('+','').replace('-','')).split(','))
+					print((ch[ch.find('=') + 1:]), "NORMAL")
+					given = float((ch[ch.find('=') + 1:]))
+					givenProb = (ch[0:ch.find('=')])
+					query = (givenProb[0:givenProb.find('|')]) 
+					evidence = (givenProb[givenProb.find('|') + 1: ch.find('=')])
+					probability[orderProbability(query, evidence)] = given
+			
+					if (ch[0:ch.find('|')]).count('+') > 0:
+						query = (ch[0:ch.find('|')]).replace('+', '-') 
+						evidence = (ch[ch.find('|') + 1: ch.find('=')])
+						probability[orderProbability(query, evidence)] = round(1.0 - given, 2)
+					else:
+						query = (ch[0:ch.find('|')]).replace('-', '+') 
+						evidence = (ch[ch.find('|') + 1: ch.find('=')])
+						probability[orderProbability(query, evidence)] = round(1.0 - given, 2)
 		else:
 			probability = {}
 			for ch in parent:
-				print((ch[ch.find('=') + 1:]), "ELSE ")
-				given = float((ch[ch.find('=') + 1:]))
-				probability[(ch[0:ch.find('=')])] = given
-				if ch.count('+') > 0:
-					probability[(ch[0:ch.find('=')]).replace('+', '-')] = 1.0 - given
-				else:
-					probability[(ch[0:ch.find('=')]).replace('-', '+')] = 1.0 - given
+				if ch != "" and ch != '':
+					print((ch[ch.find('=') + 1:]), "ELSE ")
+					given = float((ch[ch.find('=') + 1:]))
+					probability[(ch[0:ch.find('=')])] = given
+					if ch.count('+') > 0:
+						probability[(ch[0:ch.find('=')]).replace('+', '-')] = 1.0 - given
+					else:
+						probability[(ch[0:ch.find('=')]).replace('-', '+')] = 1.0 - given
 		if len(children) > 1:
 			for ch in children:
 				#If the probabilty does not contain | then ignore it 
