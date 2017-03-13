@@ -209,7 +209,7 @@ bayesNetwork = []
 final_results = []
 
 for line in fileinput.input():
-	#print(line)
+	print(line)
 	if not line and getting == "q":
 		break
 	if getting == "n":
