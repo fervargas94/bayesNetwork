@@ -180,13 +180,13 @@ def parseQueries(bayesNetworkCopy):
 					downSum += getChainRule(list(set(probability.split(','))), list(set(probability.split(','))))
 			else:
 				downSum += getChainRule(list(evidence), list(evidence))
-			final_results.append(upperSum/downSum)
-			#print(('%.7f'%(upperSum/downSum)).rstrip('0'))
+			#final_results.append(upperSum/downSum)
+			print(('%.7f'%(upperSum/downSum)).rstrip('0'))
 		else:
 			matches = filter(lambda obj: obj.value == query.replace('+', '-').replace('-',''), bayesNetwork)
 			if matches and query in matches[0].table:
-				final_results.append((matches[0].table)[query])
-				#print((matches[0].table)[query])
+				#final_results.append((matches[0].table)[query])
+				print((matches[0].table)[query])
 			else:
 				given = query
 				parents = getParents(matches[0].parents)
@@ -196,19 +196,20 @@ def parseQueries(bayesNetworkCopy):
 					if type(com) != list:
 						com = [com]
 					suma += getChainRule([given] + com, [given] + com)
-				final_results.append(suma)
-				#print(('%.7f'%suma).rstrip('0'))
+				#final_results.append(suma)
+				print(('%.7f'%suma).rstrip('0'))
 
 
 nodes = []
 probabilities = []
 queries = []
 getting = 0
-input = fileinput.input()
+#input = fileinput.input()
 bayesNetwork = []
 final_results = []
 
-'''for line in input:
+for line in fileinput.input():
+	#print(line)
 	if not line and getting == "q":
 		break
 	if getting == "n":
@@ -225,9 +226,9 @@ final_results = []
 	if line == '[Nodes]\n':
 		getting = "n"
 	if line == '[Queries]\n':
-		getting = "q"'''
+		getting = "q"
 
-while 1:
+'''while 1:
 	try:
 		line = raw_input()
 		if not line and getting == "q":
@@ -248,18 +249,13 @@ while 1:
 		if line == '[Queries]':
 			getting = "q"
 	except (EOFError):
-	   break #end of file reached
+	   break #end of file reached'''
 
-print(nodes, probabilities, queries)
+#print(nodes, probabilities, queries)
 final_nodes = parseNodes(nodes)
 parseProbabilities(final_nodes, probabilities)
 bayesNetworkCopy = copy.deepcopy(bayesNetwork)
 parseQueries(bayesNetworkCopy)
-print(final_results)
-for va in final_results:
-	print(('%.7f'%va).rstrip('0'))
-
-print("Hola, si tengo output")
 
 
 
