@@ -257,6 +257,8 @@ parseQueries(bayesNetworkCopy)
 for va in final_results:
 	print(('%.7f'%va).rstrip('0'))
 
+print("Hola, si tengo output")
+
 
 
 
