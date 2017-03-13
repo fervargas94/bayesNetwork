@@ -254,6 +254,7 @@ final_nodes = parseNodes(nodes)
 parseProbabilities(final_nodes, probabilities)
 bayesNetworkCopy = copy.deepcopy(bayesNetwork)
 parseQueries(bayesNetworkCopy)
+print(final_results)
 for va in final_results:
 	print(('%.7f'%va).rstrip('0'))
 
